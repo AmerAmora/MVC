@@ -1,0 +1,51 @@
+﻿@model _ASP.NET_MVC_tasks.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unit_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unit_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unitsInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unitsInStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Category_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Category_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Product_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
