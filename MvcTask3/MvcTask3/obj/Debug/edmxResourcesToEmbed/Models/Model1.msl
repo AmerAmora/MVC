@@ -4,6 +4,8 @@
     <EntitySetMapping Name="employees">
       <EntityTypeMapping TypeName="Task3Model.employee">
         <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="Cv" ColumnName="Cv" />
+          <ScalarProperty Name="user_image" ColumnName="user_image" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />

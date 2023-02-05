@@ -19,6 +19,17 @@ namespace MvcTask3.Controllers
         {
             return View(db.employees.ToList());
         }
+        [HttpPost]
+        public ActionResult Index(string search, string SearchType)
+        { switch (SearchType)
+                        
+            {
+                case "1":   return View(db.employees.Where(employee => employee.first_Name.Contains(search)).ToList());
+                case "2": return View(db.employees.Where(employee => employee.last_Name.Contains(search)).ToList());
+                case "3": return View(db.employees.Where(employee => employee.Email.Contains(search)).ToList());
+                default: return View(db.employees.ToList());
+            }
+        }
 
         // GET: employees/Details/5
         public ActionResult Details(int? id)
@@ -46,10 +57,16 @@ namespace MvcTask3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "first_Name,last_Name,Email,Phone,age,Job_Title,Gender,id")] employee employee)
+        public ActionResult Create([Bind(Include = "first_Name,last_Name,Email,Phone,age,Job_Title,Gender,id,user_image,Cv")] employee employee,HttpPostedFileBase user_image,HttpPostedFileBase Cv)
         {
             if (ModelState.IsValid)
             {
+                string path = "../Images/"+user_image.FileName;
+                user_image.SaveAs(Server.MapPath(path));
+                employee.user_image = path;
+                string CvPath = "../Cvs/" + Cv.FileName;
+                Cv.SaveAs(Server.MapPath(CvPath));
+                employee.Cv = CvPath;
                 db.employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,11 +95,36 @@ namespace MvcTask3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "first_Name,last_Name,Email,Phone,age,Job_Title,Gender,id")] employee employee)
+        public ActionResult Edit(int? id,[Bind(Include = "first_Name,last_Name,Email,Phone,age,Job_Title,Gender,id,user_image,Cv")] employee employee, HttpPostedFileBase user_image, HttpPostedFileBase Cv)
         {
             if (ModelState.IsValid)
             {
+                var existingModel = db.employees.AsNoTracking().FirstOrDefault(x => x.id == id);
+
+                if (user_image != null)
+                {
+                    string path = "../../Images/" + user_image.FileName;
+                    user_image.SaveAs(Server.MapPath(path));
+                    employee.user_image = path;
+                }
+                else
+                {
+                    employee.user_image = existingModel.user_image;
+                }
+                if (Cv != null)
+                {
+                    string CvPath = "../../Cvs/" + Cv.FileName;
+                    Cv.SaveAs(Server.MapPath(CvPath));
+                    employee.Cv = CvPath;
+                }
+                else
+                {
+                    employee.Cv = existingModel.Cv;
+                }
+
+
                 db.Entry(employee).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -32,7 +32,7 @@ namespace MvcTask3.Models
         public string Email { get; set; }
         [RegularExpression("((079)|(078)|(077)){1}[0-9]{7}")]
         public string Phone { get; set; }
-        [Range(18,50)]
+        [Range(18, 50)]
         public Nullable<int> age { get; set; }
 
         [DisplayName("Job Title")]
@@ -41,5 +41,7 @@ namespace MvcTask3.Models
         public string Job_Title { get; set; }
         public Nullable<bool> Gender { get; set; }
         public int id { get; set; }
+        public string user_image { get; set; }
+        public string Cv { get; set; }
     }
 }

@@ -17,6 +17,8 @@
           <Property Name="Job_Title" Type="varchar" MaxLength="10" />
           <Property Name="Gender" Type="bit" />
           <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="user_image" Type="varchar(max)" />
+          <Property Name="Cv" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="Task3ModelStoreContainer">
           <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
@@ -40,6 +42,8 @@
           <Property Name="Job_Title" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="Boolean" />
           <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="user_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cv" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -50,6 +54,8 @@
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="Task3Model.employee">
               <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="Cv" ColumnName="Cv" />
+                <ScalarProperty Name="user_image" ColumnName="user_image" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />

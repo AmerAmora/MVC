@@ -65,7 +65,17 @@
         <dd>
             @Html.DisplayFor(model => model.Gender)
         </dd>
+        <dd>
+            <img src="../@Model.user_image" width="150px" height="150px" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cv)
+        </dt>
 
+        <dd>
+            <a href="@Model.Cv" download="@Model.Cv">@Model.first_Name Cv</a>
+
+        </dd>
     </dl>
 </div>
 <p>

@@ -15,5 +15,7 @@
     <Property Name="Job_Title" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="Gender" Type="Boolean" />
     <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="user_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Cv" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

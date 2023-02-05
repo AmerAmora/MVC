@@ -12,6 +12,8 @@
     <Property Name="Job_Title" Type="varchar" MaxLength="10" />
     <Property Name="Gender" Type="bit" />
     <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="user_image" Type="varchar(max)" />
+    <Property Name="Cv" Type="varchar(max)" />
   </EntityType>
   <EntityContainer Name="Task3ModelStoreContainer">
     <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
