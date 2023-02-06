@@ -2,6 +2,11 @@
 <Schema Namespace="Task3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="Task3Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="employees" EntityType="Task3Model.employee" />
+    <EntitySet Name="Orders" EntityType="Task3Model.Order" />
+    <AssociationSet Name="FK__Orders__Employee__49C3F6B7" Association="Task3Model.FK__Orders__Employee__49C3F6B7">
+      <End Role="employee" EntitySet="employees" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="employee">
     <Key>
@@ -17,5 +22,27 @@
     <Property Name="id" Type="Int32" Nullable="false" />
     <Property Name="user_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Cv" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Task3Model.FK__Orders__Employee__49C3F6B7" FromRole="employee" ToRole="Order" />
   </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Order_iD" />
+    </Key>
+    <Property Name="Order_iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_Date" Type="DateTime" Precision="3" />
+    <Property Name="Employee_id" Type="Int32" />
+    <NavigationProperty Name="employee" Relationship="Task3Model.FK__Orders__Employee__49C3F6B7" FromRole="Order" ToRole="employee" />
+  </EntityType>
+  <Association Name="FK__Orders__Employee__49C3F6B7">
+    <End Type="Task3Model.employee" Role="employee" Multiplicity="0..1" />
+    <End Type="Task3Model.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

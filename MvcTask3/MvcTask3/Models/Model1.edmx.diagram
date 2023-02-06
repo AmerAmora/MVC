@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="c5439aca644e4b93820c8891326c55b4" Name="Diagram1" >
         <EntityTypeShape EntityType="Task3Model.employee" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Task3Model.Order" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="Task3Model.FK__Orders__Employee__49C3F6B7" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,8 +20,33 @@
           <Property Name="user_image" Type="varchar(max)" />
           <Property Name="Cv" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Order_iD" />
+          </Key>
+          <Property Name="Order_iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_Date" Type="datetime" />
+          <Property Name="Employee_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__Orders__Employee__49C3F6B7">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Task3ModelStoreContainer">
           <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Orders__Employee__49C3F6B7" Association="Self.FK__Orders__Employee__49C3F6B7">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -29,6 +54,11 @@
       <Schema Namespace="Task3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Task3Entities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="employees" EntityType="Task3Model.employee" />
+          <EntitySet Name="Orders" EntityType="Task3Model.Order" />
+          <AssociationSet Name="FK__Orders__Employee__49C3F6B7" Association="Task3Model.FK__Orders__Employee__49C3F6B7">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="employee">
           <Key>
@@ -44,7 +74,29 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="user_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Cv" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orders" Relationship="Task3Model.FK__Orders__Employee__49C3F6B7" FromRole="employee" ToRole="Order" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_iD" />
+          </Key>
+          <Property Name="Order_iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_Date" Type="DateTime" Precision="3" />
+          <Property Name="Employee_id" Type="Int32" />
+          <NavigationProperty Name="employee" Relationship="Task3Model.FK__Orders__Employee__49C3F6B7" FromRole="Order" ToRole="employee" />
+        </EntityType>
+        <Association Name="FK__Orders__Employee__49C3F6B7">
+          <End Type="Task3Model.employee" Role="employee" Multiplicity="0..1" />
+          <End Type="Task3Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -64,6 +116,15 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="last_Name" ColumnName="last_Name" />
                 <ScalarProperty Name="first_Name" ColumnName="first_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Task3Model.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Order_iD" ColumnName="Order_iD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

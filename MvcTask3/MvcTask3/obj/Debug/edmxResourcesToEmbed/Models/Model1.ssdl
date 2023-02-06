@@ -15,7 +15,32 @@
     <Property Name="user_image" Type="varchar(max)" />
     <Property Name="Cv" Type="varchar(max)" />
   </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Order_iD" />
+    </Key>
+    <Property Name="Order_iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Order_Date" Type="datetime" />
+    <Property Name="Employee_id" Type="int" />
+  </EntityType>
+  <Association Name="FK__Orders__Employee__49C3F6B7">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Task3ModelStoreContainer">
     <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Orders__Employee__49C3F6B7" Association="Self.FK__Orders__Employee__49C3F6B7">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

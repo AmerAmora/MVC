@@ -19,6 +19,11 @@ namespace MvcTask3.Controllers
         {
             return View(db.employees.ToList());
         }
+        public PartialViewResult LastOrder()
+        {
+            var lastOrder = db.Orders.OrderByDescending(x => x.Order_Date).FirstOrDefault();
+            return PartialView("_LastOrder",lastOrder);
+        }
         [HttpPost]
         public ActionResult Index(string search, string SearchType)
         { switch (SearchType)
