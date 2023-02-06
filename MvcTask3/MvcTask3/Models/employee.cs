@@ -11,7 +11,9 @@ namespace MvcTask3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,12 +21,29 @@ namespace MvcTask3.Models
         {
             this.Orders = new HashSet<Order>();
         }
-    
+
+        [DisplayName("First Name")]
+        [StringLength(12)]
+
+        [Required(ErrorMessage = " First Name is required")]
+
         public string first_Name { get; set; }
+        [DisplayName("Last Name")]
+        [StringLength(12)]
+        [Required(ErrorMessage = "Last Name is required")]
+
         public string last_Name { get; set; }
+        [Required(ErrorMessage = "Email  is required")]
+        [EmailAddress]
         public string Email { get; set; }
+        [RegularExpression("((079)|(078)|(077)){1}[0-9]{7}")]
         public string Phone { get; set; }
+        [Range(18, 50)]
         public Nullable<int> age { get; set; }
+
+        [DisplayName("Job Title")]
+        [StringLength(10)]
+
         public string Job_Title { get; set; }
         public Nullable<bool> Gender { get; set; }
         public int id { get; set; }
