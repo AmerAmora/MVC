@@ -10,7 +10,8 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 @using (Html.BeginForm())
-{<label> Search By: </label>
+{
+    <label> Search By: </label>
     <label>First Name</label>
     <input type="radio" name="SearchType" id="SearchType" value="1" />
     <label>Last Name</label>
@@ -69,9 +70,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Job_Title)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
+            @{
+                if (Convert.ToBoolean(item.Gender)) {
+
+                <td> Male</td>}
+                    else { <td> Female </td > }
+                }
+
             <td>
                 <img src="@item.user_image" width="150px" height="150px" />
             </td>

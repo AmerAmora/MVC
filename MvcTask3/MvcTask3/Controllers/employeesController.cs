@@ -24,7 +24,7 @@ namespace MvcTask3.Controllers
         { switch (SearchType)
                         
             {
-                case "1":   return View(db.employees.Where(employee => employee.first_Name.Contains(search)).ToList());
+                case "1": return View(db.employees.Where(employee => employee.first_Name.Contains(search)).ToList());
                 case "2": return View(db.employees.Where(employee => employee.last_Name.Contains(search)).ToList());
                 case "3": return View(db.employees.Where(employee => employee.Email.Contains(search)).ToList());
                 default: return View(db.employees.ToList());
