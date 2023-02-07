@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Task3ModelStoreContainer" CdmEntityContainer="Task3Entities">
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="Task3Model.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="first_Name" ColumnName="first_Name" />
+          <ScalarProperty Name="last_Name" ColumnName="last_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_image" ColumnName="user_image" />
+          <ScalarProperty Name="Cv" ColumnName="Cv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
