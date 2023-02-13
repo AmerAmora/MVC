@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApiTaskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="Faculity_id" />
+    </Key>
+    <Property Name="Faculity_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Faculity_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Faculity_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Majors" Relationship="Self.FK__Majors__Faculity__3C69FB99" FromRole="Faculties" ToRole="Majors" />
+  </EntityType>
+  <EntityType Name="Major">
+    <Key>
+      <PropertyRef Name="Major_id" />
+    </Key>
+    <Property Name="Major_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Major_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Faculity_id" Type="Int32" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK__Majors__Faculity__3C69FB99" FromRole="Majors" ToRole="Faculties" />
+  </EntityType>
+  <Association Name="FK__Majors__Faculity__3C69FB99">
+    <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Majors" Type="Self.Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="Faculity_id" />
+      </Principal>
+      <Dependent Role="Majors">
+        <PropertyRef Name="Faculity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApiTaskEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+    <EntitySet Name="Majors" EntityType="Self.Major" />
+    <AssociationSet Name="FK__Majors__Faculity__3C69FB99" Association="Self.FK__Majors__Faculity__3C69FB99">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Majors" EntitySet="Majors" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

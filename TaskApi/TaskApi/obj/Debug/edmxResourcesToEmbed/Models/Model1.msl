@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ApiTaskModelStoreContainer" CdmEntityContainer="ApiTaskEntities">
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="ApiTaskModel.Faculty">
+        <MappingFragment StoreEntitySet="Faculties">
+          <ScalarProperty Name="Faculity_id" ColumnName="Faculity_id" />
+          <ScalarProperty Name="Faculity_Name" ColumnName="Faculity_Name" />
+          <ScalarProperty Name="Faculity_Image" ColumnName="Faculity_Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Majors">
+      <EntityTypeMapping TypeName="ApiTaskModel.Major">
+        <MappingFragment StoreEntitySet="Majors">
+          <ScalarProperty Name="Major_id" ColumnName="Major_id" />
+          <ScalarProperty Name="Major_Name" ColumnName="Major_Name" />
+          <ScalarProperty Name="Faculity_id" ColumnName="Faculity_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
